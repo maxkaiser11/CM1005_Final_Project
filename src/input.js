@@ -1,3 +1,6 @@
+var keyCode;
+var key;
+
 function keyPressed()
 {
 	// if statements to control the animation of the character when

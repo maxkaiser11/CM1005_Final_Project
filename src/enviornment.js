@@ -214,7 +214,7 @@ function createPlatform(x, y, length)
     length: length,
     draw: function()
     {
-      fill(255, 0, 255);
+      fill(139, 99, 61);
       rect(this.x, this.y, this.length, 20);
     },
     checkContact: function(gc_x, gc_y)

@@ -27,8 +27,9 @@ var mountains;
 var game_score;
 var flagpole;
 var lives;
-var maxLives;
-var maxScore;
+var maxLives = 3;
+var maxScore = 3;
+var respawnFrames = 0;
 
 // Sounds
 var pickupSound;
@@ -39,6 +40,18 @@ var jumpSound;
 
 // platforms
 var platforms;
+
+// enemies
+var enemies;
+
+// Movement Constants
+const LEFT_ARROW = 37;
+const RIGHT_ARROW = 39;
+const SPACE_BAR = 32;
+const RESTART_KEY = 82;
+
+const CHAR_HALF_W = 12;
+const CHAR_HEIGHT = 60;
 
 
 /*********Start of code written without assistance *********/
@@ -75,10 +88,9 @@ function initSounds()
 
 function startGame()
 {
-
+	game_score = 0;
 
 	// Initializing character movement variables
-	// gameChar_x = width/2;
 	gameChar_x = -200;
 	gameChar_y = floorPos_y;
 	isLeft = false;
@@ -93,6 +105,10 @@ function startGame()
 	//  Initializing Enviornemnt variables
 	// trees_x = [300, 500, 900, 1150];
 	trees_x = [-350, -100, 150, 400, 650, 900, 1150];
+
+	// Init Enemies
+	enemies = [];
+	enemies.push(new Enemy(100, floorPos_y - 10, 100));
 	
 
 	// Init platforms array
@@ -117,8 +133,8 @@ function startGame()
 
 
 	collectables = [
-		{ x_pos: 100, y_pos: floorPos_y - 30, size: 50, isFound: false },
-		{x_pos: 300, y_pos: floorPos_y - 30, size: 50, isFound: false },
+		{ x_pos: 200, y_pos: floorPos_y - 80, size: 50, isFound: false },
+		{x_pos: 450, y_pos: floorPos_y - 150, size: 50, isFound: false },
 		{ x_pos: 800, y_pos: floorPos_y - 30, size: 50, isFound: false }	
 	]
 
@@ -126,13 +142,12 @@ function startGame()
 	trunkTopY = treePos_y - 150;
 
 	canyons = [
-		{ x_pos: 800, width: 75 },
+		{ x_pos: 800, width: 150 },
 		{ x_pos: 350, width: 125 },
-		// { x_pos: 50, width: 75 }
 	]
 
 
-	game_score = 0;
+	
 
 	flagpole = {
 		x_pos: 1250,

@@ -9,13 +9,14 @@ function setup()
 {
 	createCanvas(1024, 576);
 	floorPos_y = height * 3/4;
-	const maxLives = 3;
 	lives = maxLives;
 	startGame();
 }
 
 function draw()
 {
+
+	if (respawnFrames > 0) respawnFrames--;
 
 	background(100,155,255); //fill the sky blue
 
@@ -62,6 +63,23 @@ function draw()
 		{
 			drawCollectable(collectables[i]);
 		}
+	}
+
+	// Checking if player collides with enemies and removes a life
+	for (let e of enemies) {
+		e.update();
+		e.draw();
+		if (e.checkAABB(gameChar_x, gameChar_y, CHAR_HALF_W, CHAR_HEIGHT))
+			{
+				// handle damage
+				if (!respawnFrames || respawnFrames === 0)
+				{
+					if (damageSound) damageSound.play();
+					lives -= 1;
+					respawnFrames = 20;
+					startGame();
+				}
+			}
 	}
 
 	// Updates Physics

@@ -12,11 +12,6 @@ const MOVE_SPEED_AIR    = 2.6;
 
 const FEET_HALF = 10;         
 
-// Movement Constants
-const LEFT_ARROW = 37;
-const RIGHT_ARROW = 39;
-const SPACE_BAR = 32;
-
 const PLATFORM_H = 20;
 
 function overCanyonSpan(xLeft, xRight)

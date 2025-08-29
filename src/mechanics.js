@@ -40,18 +40,18 @@ function characterMovement()
 // Checking if Player reached FlagPole and has enough score to finish level
 function checkFlagPole()
 {
-  const threshold = 20;
+  const threshold = 10;
   if (Math.abs(gameChar_x - flagpole.x_pos) < threshold)
 	{
     flagpole.isReached = true;
-    if (flagpole.isReached && game_score == 3)
-		{
-			// Level Complete screen
-			gameWonSound.play();
-			GameWon();
-			return;
- 	 }
-  }
+	}
+	if (flagpole.isReached && game_score === maxScore)
+	{
+		// Level Complete screen
+		gameWonSound.play();
+		GameWon();
+		return;
+	}
 }
 
 // Checks if the player overlapped with the coin and increments the game_score by 1
@@ -68,6 +68,7 @@ function checkCollectable(t_collectable)
 // Checks if the player has fallen below the height of the floor and decrementing the lives by 1
 function checkPlayerDie()
 {
+	if (respawnFrames > 0) return;
 	if (gameChar_y > height)
 	{
 		damageSound.play();

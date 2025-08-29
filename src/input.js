@@ -8,7 +8,7 @@ function keyPressed()
   if (keyCode === LEFT_ARROW)  isLeft = true;
   if (keyCode === RIGHT_ARROW) isRight = true;
 
-  if (key === ' ' || keyCode === 32)
+  if (keyCode === SPACE_BAR)
 	{
     // jump only if on ground
     if (isGrounded)
@@ -17,6 +17,27 @@ function keyPressed()
       if (jumpSound) jumpSound.play();
 	   	isGrounded = false;
       isFalling = true;
+    }
+  }
+
+  if (keyCode === RESTART_KEY)
+  {
+    if (lives <= 0 || flagpole.isReached)
+    {
+      lives = maxLives;
+      game_score = 0;
+      vy = 0;
+      isPlummeting = false;
+      isFalling = false;
+      isGrounded = true;
+
+      respawnFrames = 3;
+
+      if (typeof isLooping === 'function' && !isLooping())
+      {
+        loop();
+      }
+      startGame();
     }
   }
 }

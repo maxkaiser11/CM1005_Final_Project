@@ -27,7 +27,7 @@ var mountains;
 var game_score;
 var flagpole;
 var lives;
-var maxLives = 3;
+var maxLives;
 var maxScore = 3;
 var respawnFrames = 0;
 
@@ -108,7 +108,8 @@ function startGame()
 
 	// Init Enemies
 	enemies = [];
-	enemies.push(new Enemy(100, floorPos_y - 10, 100));
+	enemies.push(new Enemy(1000, floorPos_y - 10, 100));
+	enemies.push(new Enemy(500, floorPos_y - 10, 100));
 	
 
 	// Init platforms array
@@ -150,7 +151,7 @@ function startGame()
 	
 
 	flagpole = {
-		x_pos: 1250,
+		x_pos: 1450,
 		isReached: false
 	};
 

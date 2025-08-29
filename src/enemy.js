@@ -11,20 +11,22 @@ function Enemy(x, y, range)
     this.currentX = x;
     this.inc = 1;
 
+    this.speed = 0.5
+
     this.w = 46;
     this.h = 26
 
     this.update = function()
     {
-        this.currentX += this.inc;
+        this.currentX += this.inc * this.speed;
 
         if (this.currentX >= this.x + this.range)
         {
-            this.inc = -1;
+            this.inc = -1 * this.speed;
         }
         else if (this.currentX < this.x)
         {
-            this.inc = 1;
+            this.inc = 1 * this.speed;
         }
     }
 

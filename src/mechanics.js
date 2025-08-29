@@ -45,7 +45,7 @@ function checkFlagPole()
 	{
     flagpole.isReached = true;
 	}
-	if (flagpole.isReached && game_score === maxScore)
+	if (flagpole.isReached && game_score >= maxScore)
 	{
 		// Level Complete screen
 		gameWonSound.play();

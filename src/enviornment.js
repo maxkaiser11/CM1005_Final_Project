@@ -124,8 +124,8 @@ function drawFlagPole()
   fill(100);
   rect(-8, -8, 16, 12, 3);
 
-  // Flag position: down when reached or score condition met
-  const flagDown = (game_score == 3);
+  // Flag position: down when reached and score condition met
+  const flagDown = (flagpole.isReached && game_score >= maxScore);
   const y = flagDown ? -50 : -250;
 
   // Flag (two-tone for interest)

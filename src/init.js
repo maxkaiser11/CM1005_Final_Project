@@ -35,6 +35,7 @@ var pickupSound;
 var damageSound;
 var gameOverSound;
 var gameWonSound;
+var jumpSound;
 
 
 /*********Start of code written without assistance *********/
@@ -61,6 +62,10 @@ function initSounds()
 	// Game Won Sound
 	gameWonSound = loadSound('sfx/gameWonSound.mp3');
 	gameWonSound.setVolume(0.5);
+
+	// Jump Sound
+	jumpSound = loadSound('sfx/jumpSound.mp3');
+	jumpSound.setVolume(0.5);
 }
 
 

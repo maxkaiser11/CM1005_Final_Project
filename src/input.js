@@ -3,48 +3,26 @@ var key;
 
 function keyPressed()
 {
-	// if statements to control the animation of the character when
-	// keys are pressed.
+  if (isPlummeting) return;
 
-	if (!isPlummeting)
+  if (keyCode === LEFT_ARROW)  isLeft = true;
+  if (keyCode === RIGHT_ARROW) isRight = true;
+
+  if (key === ' ' || keyCode === 32)
 	{
-		if (keyCode == 37)
+    // jump only if on ground
+    if (isGrounded)
 		{
-			console.log("left arrow");
-			isLeft = true;
-		}
-		else if (keyCode == 39)
-		{
-			console.log("right arrow");
-			isRight = true;
-		}
-		else if (keyCode == 32)
-		{
-			if (!isFalling)
-			{
-                jumpSound.play();
-				gameChar_y -= 120;
-			}
-		}
-	}
+      vy = -JUMP_SPEED;
+      if (jumpSound) jumpSound.play();
+	   	isGrounded = false;
+      isFalling = true;
+    }
+  }
 }
 
 function keyReleased()
 {
-	// if statements to control the animation of the character when
-	// keys are released.
-
-	console.log("keyReleased: " + key);
-	console.log("keyReleased: " + keyCode);
-
-	if (keyCode == 37)
-	{
-		console.log("left arrow")
-		isLeft = false;
-	}
-	else if (keyCode == 39)
-	{
-		console.log("right arrow")
-		isRight = false;
-	}
+  if (keyCode === LEFT_ARROW)  isLeft = false;
+  if (keyCode === RIGHT_ARROW) isRight = false;
 }

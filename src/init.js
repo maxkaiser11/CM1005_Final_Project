@@ -37,6 +37,9 @@ var gameOverSound;
 var gameWonSound;
 var jumpSound;
 
+// platforms
+var platforms;
+
 
 /*********Start of code written without assistance *********/
 // Scrolling Variables
@@ -75,125 +78,65 @@ function startGame()
 
 
 	// Initializing character movement variables
-	gameChar_x = width/2;
+	// gameChar_x = width/2;
+	gameChar_x = -200;
 	gameChar_y = floorPos_y;
 	isLeft = false;
 	isRight = false;
 	isFalling = false;
 	isPlummeting = false;
 
-	/*********Start of code written without assistance *********/
 	// Camera initialization
 	cameraPosX = 0;
 	cameraSpeed = 2;
-	/*********End of code written without assistance *********/
-
-
-
 
 	//  Initializing Enviornemnt variables
-	trees_x = [300, 500, 900, 1150];
+	// trees_x = [300, 500, 900, 1150];
+	trees_x = [-350, -100, 150, 400, 650, 900, 1150];
+	
 
+	// Init platforms array
+	platforms = [];
+	platforms.push(createPlatform(100, floorPos_y - 50, 200));
+	platforms.push(createPlatform(400, floorPos_y - 120, 150));
+	platforms.push(createPlatform(750, floorPos_y - 80, 100));
 
-	/*********Start of code written without assistance *********/
 	clouds = [
-		cloud = {
-			x1: 200,
-			y1: 140,
-			x2: 160,
-			y2: 150,
-			x3: 240,
-			y3: 150
-		},
-		cloud = {
-			x1: 650,
-			y1: 150,
-			x2: 610,
-			y2: 160,
-			x3: 690,
-			y3: 160
-		},
-		cloud = {
-			x1: 400,
-			y1: 40,
-			x2: 360,
-			y2: 50,
-			x3: 440,
-			y3: 50
-		}
+		{ x1: 200,  y1: 120, x2: 160, y2: 130, x3: 240, y3: 130 },
+		{ x1: 600,  y1: 100, x2: 560, y2: 110, x3: 640, y3: 110 },
+		{ x1: 1000, y1: 80,  x2: 960, y2: 90,  x3: 1040,y3: 90  },
+		{ x1: 1400, y1: 150, x2: 1360,y2: 160, x3: 1440,y3: 160 }
 	];
 
 	mountains = [
-		mountain = {
-			topX: 500,
-			topY: 100,
-			leftX: 300,
-			leftY: 433,
-			rightX: 800,
-			rightY: 433
-		},
-		mountain = {
-			topX: 1000,
-			topY: 100,
-			leftX: 800,
-			leftY: 433,
-			rightX: 1300,
-			rightY: 433
-		},
-		mountain = {
-			topX: 200,
-			topY: 100,
-			leftX: 0,
-			leftY: 433,
-			rightX: 500,
-			rightY: 433
-		}
+		{ topX: -200, topY: 130, leftX: -400, leftY: floorPos_y, rightX: 0,    rightY: floorPos_y },
+		{ topX: 300,  topY: 120, leftX: 100,  leftY: floorPos_y, rightX: 500,  rightY: floorPos_y },
+		{ topX: 800,  topY: 100, leftX: 600,  leftY: floorPos_y, rightX: 1000, rightY: floorPos_y },
+		{ topX: 1300, topY: 110, leftX: 1100, leftY: floorPos_y, rightX: 1500, rightY: floorPos_y }
 	];
 
+
 	collectables = [
-		collectable = {
-		x_pos: 100,
-		y_pos: floorPos_y - 30,
-		size: 50,
-		isFound: false
-		},
-		collectable = {
-		x_pos: 400,
-		y_pos: floorPos_y - 30,
-		size: 50,
-		isFound: false
-		},
-		collectable = {
-		x_pos: 800,
-		y_pos: floorPos_y - 30,
-		size: 50,
-		isFound: false
-		}
+		{ x_pos: 100, y_pos: floorPos_y - 30, size: 50, isFound: false },
+		{x_pos: 300, y_pos: floorPos_y - 30, size: 50, isFound: false },
+		{ x_pos: 800, y_pos: floorPos_y - 30, size: 50, isFound: false }	
 	]
 
 	treePos_y = floorPos_y;
 	trunkTopY = treePos_y - 150;
 
 	canyons = [
-		canyon = {
-		x_pos: 800,
-		width: 75
-		},
-		canyon = {
-		x_pos: 200,
-		width: 75
-		},
-		canyon = {
-		x_pos: 50,
-		width: 75
-		}
+		{ x_pos: 800, width: 75 },
+		{ x_pos: 350, width: 125 },
+		// { x_pos: 50, width: 75 }
 	]
+
 
 	game_score = 0;
 
 	flagpole = {
-		x_pos: 950,
+		x_pos: 1250,
 		isReached: false
 	};
-	/*********End of code written without assistance *********/
+
 }

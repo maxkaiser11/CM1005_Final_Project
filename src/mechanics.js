@@ -37,16 +37,19 @@ function characterMovement()
 	}
 }
 
-// Checking Collision
-function checkFlagPole() {
+// Checking if Player reached FlagPole and has enough score to finish level
+function checkFlagPole()
+{
   const threshold = 20;
-  if (Math.abs(gameChar_x - flagpole.x_pos) < threshold) {
+  if (Math.abs(gameChar_x - flagpole.x_pos) < threshold)
+	{
     flagpole.isReached = true;
-    if (flagpole.isReached && game_score == 3) {
-    // Level Complete screen
-	gameWonSound.play();
-	GameWon();
-    return;
+    if (flagpole.isReached && game_score == 3)
+		{
+			// Level Complete screen
+			gameWonSound.play();
+			GameWon();
+			return;
  	 }
   }
 }

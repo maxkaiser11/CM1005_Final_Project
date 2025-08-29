@@ -15,7 +15,7 @@ const SHOES = [20, 20, 25];
    airborne: true/false
    walkT: a phase value for walk cycle
 
-   (PS: I am a self taught Game Dev and currently work at Roarington AG)
+   (PS: I am a self taught Game Dev and currently work at Roarington AG, hence why using math to make my character nicer)
 */
 function drawCharacter(dx, airborne, walkT)
 {
@@ -59,9 +59,12 @@ function drawCharacter(dx, airborne, walkT)
   /* Mouth */
   stroke(150, 40, 40);
   strokeWeight(2);
-  if (airborne) {
+  if (airborne)
+	{
     line(-5, -49 + bob, 5, -49 + bob); // focused mouth when jumping
-  } else {
+  } 
+  else 
+	{
     noFill();
     arc(0, -51 + bob, 10, 6, 0, PI);   // friendly smile
   }
@@ -94,7 +97,6 @@ function drawCharacter(dx, airborne, walkT)
 
 function characterJumpingLeft()
 {
-  // Left-facing, airborne, no walk cycle sway
   drawCharacter(-1, true, 0);
 }
 
@@ -105,7 +107,6 @@ function characterJumpingRight()
 
 function characterWalkingLeft()
 {
-  // Use frameCount for a lightweight walk cycle
   drawCharacter(-1, false, frameCount * 0.25);
 }
 
@@ -116,8 +117,6 @@ function characterWalkingRight()
 
 function characterJumpingForward()
 {
-  // Forward look ≈ face right with symmetric pose (airborne)
-  // If you want perfectly centered, you can pass dx=1 and keep features symmetric.
   drawCharacter(1, true, 0);
 }
 

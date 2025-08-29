@@ -6,8 +6,10 @@
 /* ============================= */
 /* ===== Clouds (mid-simple) ==== */
 /* ============================= */
-function drawClouds() {
-  for (let i = 0; i < clouds.length; i++) {
+function drawClouds() 
+{
+  for (let i = 0; i < clouds.length; i++) 
+  {
     // base puffs
     noStroke();
     fill(255);
@@ -34,8 +36,10 @@ function drawClouds() {
 /* ===== Mountains (cap + light) ===== */
 /* ================================== */
 /* expects: mountains[i].topX, topY, leftX, leftY, rightX, rightY */
-function drawMountains() {
-  for (let i = 0; i < mountains.length; i++) {
+function drawMountains() 
+{
+  for (let i = 0; i < mountains.length; i++) 
+  {
     const m = mountains[i];
 
     // Body
@@ -72,8 +76,10 @@ function drawMountains() {
 /* =============================== */
 /* ============ Pines =========== */
 /* =============================== */
-function drawTrees() {
-  for (let i = 0; i < trees_x.length; i++) {
+function drawTrees() 
+{
+  for (let i = 0; i < trees_x.length; i++) 
+  {
     const left = trees_x[i];
     const cx   = left + 30; // your trunk rect was 60 wide originally
 
@@ -103,7 +109,8 @@ function drawTrees() {
 /* =============================== */
 /* ========== FlagPole  ========== */
 /* =============================== */
-function drawFlagPole() {
+function drawFlagPole() 
+{
   push();
   translate(flagpole.x_pos, floorPos_y);
 
@@ -118,7 +125,7 @@ function drawFlagPole() {
   rect(-8, -8, 16, 12, 3);
 
   // Flag position: down when reached or score condition met
-  const flagDown = (flagpole.isReached || game_score == 3);
+  const flagDown = (game_score == 3);
   const y = flagDown ? -50 : -250;
 
   // Flag (two-tone for interest)
@@ -133,7 +140,8 @@ function drawFlagPole() {
 /* =============================== */
 /* =========== Canyon  ========== */
 /* =============================== */
-function drawCanyon(t_canyon) {
+function drawCanyon(t_canyon) 
+{
   const x = t_canyon.x_pos;
   const w = t_canyon.width;
   const y = floorPos_y;   // your ground baseline
@@ -195,6 +203,35 @@ function drawCollectable(t_collectable)
   text("$", x, y + 1);
 
   pop();
+}
+
+function createPlatform(x, y, length)
+{
+  var p = 
+  {
+    x: x,
+    y: y,
+    length: length,
+    draw: function()
+    {
+      fill(255, 0, 255);
+      rect(this.x, this.y, this.length, 20);
+    },
+    checkContact: function(gc_x, gc_y)
+    {
+      if (gc_x > this.x && gc_x < this.x + this.length)
+      {
+        var d = this.y - gc_y;
+        if (d >= 0 && d < 10)
+        {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+
+  return p;
 }
 
 

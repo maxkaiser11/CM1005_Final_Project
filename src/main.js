@@ -24,6 +24,7 @@ function draw()
 	fill(0,155,0);
 	rect(0, floorPos_y, width, height - floorPos_y); //draw some green ground
 
+
 	/********** Camera **********/
 	// Scrolling camera based on character direction
 	cameraHandler();
@@ -63,10 +64,22 @@ function draw()
 		}
 	}
 
-/********** CHARACTER MOVEMENT **********/
-
+	// Updates Physics
+	updatePlayerPhysics();
+	
+	
+	// Drawing Platforms
+	for (let i = 0; i < platforms.length; i++)
+		{
+			platforms[i].draw();
+		}
+		
+	/********** CHARACTER MOVEMENT **********/
+	
 	// Moves the Character
-	characterMovement();
+	characterMovement();	
+		
+	
 
 	pop();
 
@@ -79,9 +92,4 @@ function draw()
 	}
 		checkPlayerDie();
 }
-
-
-// Calling Input Functions
-keyPressed();
-keyReleased();
 
